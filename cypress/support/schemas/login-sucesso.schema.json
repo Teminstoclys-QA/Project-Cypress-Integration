@@ -1,0 +1,10 @@
+{
+  "$id": "login-sucesso",
+  "type": "object",
+  "required": ["message", "authorization"],
+  "additionalProperties": false,
+  "properties": {
+    "message": { "type": "string" },
+    "authorization": { "type": "string", "pattern": "^Bearer .+" }
+  }
+}

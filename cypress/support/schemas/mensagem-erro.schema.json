@@ -1,0 +1,9 @@
+{
+  "$id": "mensagem-erro",
+  "type": "object",
+  "required": ["message"],
+  "additionalProperties": false,
+  "properties": {
+    "message": { "type": "string" }
+  }
+}
