@@ -1,0 +1,100 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Expressão de tags do Cucumber (ex.: @smoke, @api and not @produtos)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  FRONT_URL: ${{ vars.FRONT_URL || 'https://front.serverest.dev' }}
+  API_URL: ${{ vars.API_URL || 'https://serverest.dev' }}
+
+jobs:
+  qualidade:
+    name: Qualidade do código (typecheck, lint, format)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Instalar dependências (sem o binário do Cypress)
+        run: npm ci
+        env:
+          CYPRESS_INSTALL_BINARY: 0
+
+      - run: npm run check
+
+  testes:
+    name: Testes ${{ matrix.suite }}
+    needs: qualidade
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: [api, e2e]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Cache do binário do Cypress
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/Cypress
+          key: cypress-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Executar suíte ${{ matrix.suite }}
+        env:
+          SUITE_TAG: '@${{ matrix.suite }}'
+          TAGS_EXTRAS: ${{ github.event.inputs.tags }}
+        run: |
+          TAGS="$SUITE_TAG"
+          if [ -n "$TAGS_EXTRAS" ]; then TAGS="$SUITE_TAG and ($TAGS_EXTRAS)"; fi
+          echo "Tags: $TAGS"
+          npx cypress run --browser chrome --expose "tags=$TAGS"
+
+      - name: Gerar relatório Allure
+        if: always()
+        run: npm run report:generate
+
+      - name: Publicar relatórios (Allure + Cucumber)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: relatorios-${{ matrix.suite }}
+          path: |
+            allure-report/
+            reports/
+          if-no-files-found: ignore
+
+      - name: Publicar screenshots (evidências e falhas)
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: screenshots-${{ matrix.suite }}
+          path: cypress/screenshots/
+          if-no-files-found: ignore
