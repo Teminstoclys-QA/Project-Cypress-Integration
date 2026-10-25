@@ -1,6 +1,6 @@
 # Automação E2E e API com Cypress — Mouts
 
-[![CI](https://github.com/Teminstoclys-QA/Project-Cypress-Mouts/actions/workflows/ci.yml/badge.svg)](https://github.com/Teminstoclys-QA/Project-Cypress-Mouts/actions/workflows/ci.yml)
+[![CI](https://github.com/Teminstoclys-QA/Project-Cypress-Integration/actions/workflows/ci.yml/badge.svg)](https://github.com/Teminstoclys-QA/Project-Cypress-Integration/actions/workflows/ci.yml)
 ![Cypress](https://img.shields.io/badge/Cypress-16-17202C?logo=cypress&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![Cucumber](https://img.shields.io/badge/Cucumber-Gherkin%20pt--BR-23D96C?logo=cucumber&logoColor=white)
@@ -110,10 +110,10 @@ cypress/
 Pré-requisitos: Node.js 22+ (há um `.nvmrc` no projeto) e Google Chrome instalado.
 
 ```bash
-git clone https://github.com/Teminstoclys-QA/Project-Cypress-Mouts.git
-cd Project-Cypress-Mouts
+git clone https://github.com/Teminstoclys-QA/Project-Cypress-Integration.git
+cd Project-Cypress-Integration
 npm install
-cp .env.example .env      
+cp .env.example .env
 
 npm test                  # todos os cenários (headless)
 npm run test:api          # apenas API
@@ -130,14 +130,14 @@ Para rodar contra uma instância local do ServeRest: `npx serverest@latest` e aj
 ### Qualidade do código
 
 ```bash
-npm run check 
+npm run check
 ```
 
 ## Relatórios e evidências
 
 ```bash
 npm test
-npm run report 
+npm run report
 ```
 
 - **Front-end:** print da tela ao final de cada cenário, além do print automático em caso de falha.
