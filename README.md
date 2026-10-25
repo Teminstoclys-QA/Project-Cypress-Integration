@@ -1,4 +1,4 @@
-# Automação E2E e API com Cypress — Mouts
+# Automação E2E e API com Cypress — ServeRest
 
 [![CI](https://github.com/Teminstoclys-QA/Project-Cypress-Integration/actions/workflows/ci.yml/badge.svg)](https://github.com/Teminstoclys-QA/Project-Cypress-Integration/actions/workflows/ci.yml)
 ![Cypress](https://img.shields.io/badge/Cypress-16-17202C?logo=cypress&logoColor=white)
@@ -6,22 +6,20 @@
 ![Cucumber](https://img.shields.io/badge/Cucumber-Gherkin%20pt--BR-23D96C?logo=cucumber&logoColor=white)
 ![Allure](https://img.shields.io/badge/Allure%20Report-3-FF6F00)
 
-Projeto desenvolvido para o **desafio técnico da MOUTS** (vaga de Senior QA Tester).
-
 Suíte de testes ponta a ponta do [ServeRest](https://serverest.dev) que integra as duas camadas da aplicação: o **front-end** ([front.serverest.dev](https://front.serverest.dev)) e a **API REST** ([serverest.dev](https://serverest.dev)). Os cenários de tela usam a API para preparar e limpar os dados e validam, no mesmo teste, a resposta do back-end e o que o usuário vê.
 
-## Sobre o desafio
+## Destaques
 
-| Requisito                                     | Atendido                                                                           |
-| --------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Automação com Cypress                         | Cypress 16 + TypeScript                                                            |
-| 3 cenários E2E do front-end                   | Login, cadastro de usuário e cadastro de produto                                   |
-| 3 cenários de API                             | Login, usuários e produtos                                                         |
-| Cenários positivos e negativos                | Todas as funcionalidades têm os dois (14 cenários no total)                        |
-| Boas práticas e padrões de projeto            | Page Objects, Service Objects, factories, contexto de cenário                      |
-| Clareza das assertivas                        | Status, mensagem, contrato (JSON Schema) e estado da tela                          |
-| Código hospedado no GitHub, em um repositório | Este repositório, com histórico em Conventional Commits                            |
-| Adicionais                                    | Cucumber, Allure com evidências, CI no GitHub Actions, lint, validação de contrato |
+| Aspecto                    | Como foi feito                                                                     |
+| -------------------------- | ---------------------------------------------------------------------------------- |
+| Cobertura                  | 6 funcionalidades (3 de front-end e 3 de API) e 14 cenários, positivos e negativos |
+| Integração front-end e API | Cenários de tela preparam e limpam os dados via API e validam as duas camadas      |
+| Arquitetura                | Page Objects, Service Objects, factories de dados e contexto de cenário            |
+| Assertivas                 | Status HTTP, mensagem, contrato (JSON Schema) e estado da tela                     |
+| BDD                        | Cenários em Gherkin, escritos em português                                         |
+| Evidências                 | Allure Report com prints de tela e respostas da API                                |
+| Qualidade de código        | TypeScript strict, ESLint, Prettier e Conventional Commits                         |
+| CI                         | GitHub Actions com execução paralela das suítes de API e E2E                       |
 
 ## Stack
 

@@ -1,7 +1,7 @@
 {
-  "name": "MOUTS-cypress-automation",
+  "name": "cypress-integration-serverest",
   "version": "1.0.0",
-  "description": "Automação E2E e API do ServeRest com Cypress, TypeScript e Cucumber — desafio técnico MOUTS",
+  "description": "Automação E2E e API do ServeRest com Cypress, TypeScript e Cucumber",
   "scripts": {
     "cy:open": "cypress open --e2e --browser chrome",
     "clean:reports": "node -e \"['allure-results','allure-report','reports'].forEach(d=>require('fs').rmSync(d,{recursive:true,force:true}))\"",
