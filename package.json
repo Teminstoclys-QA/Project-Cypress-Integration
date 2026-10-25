@@ -1,0 +1,54 @@
+{
+  "name": "MOUTS-cypress-automation",
+  "version": "1.0.0",
+  "description": "Automação E2E e API do ServeRest com Cypress, TypeScript e Cucumber — desafio técnico MOUTS",
+  "scripts": {
+    "cy:open": "cypress open --e2e --browser chrome",
+    "clean:reports": "node -e \"['allure-results','allure-report','reports'].forEach(d=>require('fs').rmSync(d,{recursive:true,force:true}))\"",
+    "pretest": "npm run clean:reports",
+    "test": "cypress run --browser chrome",
+    "pretest:api": "npm run clean:reports",
+    "test:api": "cypress run --browser chrome --expose tags=@api",
+    "pretest:e2e": "npm run clean:reports",
+    "test:e2e": "cypress run --browser chrome --expose tags=@e2e",
+    "pretest:smoke": "npm run clean:reports",
+    "test:smoke": "cypress run --browser chrome --expose tags=@smoke",
+    "test:headed": "cypress run --browser chrome --headed --expose tags=@e2e",
+    "report:generate": "allure generate ./allure-results",
+    "report:open": "allure open ./allure-report",
+    "report": "npm run report:generate && npm run report:open",
+    "typecheck": "tsc -p tsconfig.json && tsc -p cypress/tsconfig.json",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run typecheck && npm run lint && npm run format:check"
+  },
+  "author": "Temínstoclys C. Pinheiro",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^28.0.1",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
+    "@eslint/js": "^10.0.1",
+    "@faker-js/faker": "^10.6.0",
+    "@types/node": "^26.6.5",
+    "ajv": "^8.20.0",
+    "allure": "^3.22.1",
+    "allure-cypress": "^3.14.0",
+    "cypress": "^16.2.0",
+    "cypress-on-fix": "^1.1.0",
+    "dotenv": "^18.0.9",
+    "esbuild": "^0.28.2",
+    "eslint": "^10.13.0",
+    "eslint-plugin-cypress": "^7.0.2",
+    "prettier": "^3.9.10",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.72.0"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "overrides": {
+    "dompurify": "^3.4.17"
+  }
+}

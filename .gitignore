@@ -1,0 +1,24 @@
+# Dependências
+node_modules/
+
+# Variáveis de ambiente (nunca versionar)
+.env
+cypress.env.json
+
+# Artefatos de execução
+reports/
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+
+# Sistema / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Relatórios Allure
+allure-results/
+allure-report/
+allure-history/
